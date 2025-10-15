@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>엑스트림 파워 - 극한의 근육 성장 프로그램</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">X-POWER</div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+    
+    <div class="modal-overlay" id="join-modal" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="joinTitle">
+            <div class="modal-header">
+                <h3 id="joinTitle">지금 시작하세요</h3>
+                <button class="modal-close" aria-label="닫기">×</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="m-name">이름</label>
+                        <input type="text" id="m-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="m-email">이메일</label>
+                        <input type="email" id="m-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="m-phone">전화번호</label>
+                        <input type="tel" id="m-phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="m-goal">목표</label>
+                        <select id="m-goal">
+                            <option value="muscle">근육 증가</option>
+                            <option value="fat">체지방 감소</option>
+                            <option value="both">둘 다</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">지금 등록하기</button>
+                </form>
+                <div class="modal-offer">
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <div class="countdown-number" data-modal="hours">00</div>
+                            <div class="countdown-label">시간</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" data-modal="minutes">00</div>
+                            <div class="countdown-label">분</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" data-modal="seconds">00</div>
+                            <div class="countdown-label">초</div>
+                        </div>
+                    </div>
+                    <div class="offer-text">지금 신청하면 오늘 한정 보너스 제공</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    window.addEventListener('DOMContentLoaded', function(){
+      var openers = document.querySelectorAll('.open-join');
+      var modal = document.getElementById('join-modal');
+      var closeBtn = modal.querySelector('.modal-close');
+      function open(){ modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+      function close(){ modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+      openers.forEach(function(el){ el.addEventListener('click', function(e){ e.preventDefault(); open(); }); });
+      closeBtn.addEventListener('click', close);
+      modal.addEventListener('click', function(e){ if(e.target === modal) close(); });
+      function updateCountdown(targetDate){
+        function pad(n){ return (n<10?'0':'')+n; }
+        function tick(){
+          var now = new Date();
+          var diff = targetDate - now; if(diff < 0) diff = 0;
+          var h = Math.floor(diff/36e5);
+          var m = Math.floor((diff%36e5)/6e4);
+          var s = Math.floor((diff%6e4)/1e3);
+          var pcH = document.querySelector('[data-pc="hours"]');
+          var pcM = document.querySelector('[data-pc="minutes"]');
+          var pcS = document.querySelector('[data-pc="seconds"]');
+          if(pcH){ pcH.textContent = pad(h); pcM.textContent = pad(m); pcS.textContent = pad(s); }
+          var mh = document.querySelector('[data-modal="hours"]');
+          var mm = document.querySelector('[data-modal="minutes"]');
+          var ms = document.querySelector('[data-modal="seconds"]');
+          if(mh){ mh.textContent = pad(h); mm.textContent = pad(m); ms.textContent = pad(s); }
+        }
+        tick(); setInterval(tick, 1000);
+      }
+      var deadline = new Date();
+      deadline.setHours(23,59,59,999);
+      updateCountdown(deadline);
+    });
+    </script>
+    <nav>
+        <ul>
+            <li><a href="#program">프로그램</a></li>
+            <li><a href="#results">놀라운 결과</a></li>
+            <li><a href="#pricing">가격</a></li>
+            <li><a href="#" class="open-join">지금 가입</a></li>
+        </ul>
+    </nav>
+    <div class="promo-ribbon">
+        오늘만 특별 할인! 지금 등록 시 추가 보너스 제공 <span class="small">재고 소진 시 조기 종료</span>
+    </div>
+    
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>3주 만에 <span class="highlight">근육량 2배</span> 증가</h1>
+            <p>일반인도 프로 보디빌더처럼 변신할 수 있는 비밀 트레이닝 시스템</p>
+            <div class="cta-buttons">
+                <a href="#program" class="btn btn-primary">프로그램 보기</a>
+                <a href="#" class="btn btn-secondary open-join">지금 시작하기</a>
+            </div>
+        </div>
+        <div class="corner-sticker sticker-pulse">오늘만 83%↓</div>
+    </section>
+    
+    
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-number">10,000+</div>
+            <div class="stat-label">성공 사례</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">21일</div>
+            <div class="stat-label">최소 변화 기간</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">300%</div>
+            <div class="stat-label">근육 성장률</div>
+        </div>
+    </section>
+    
+    <section class="program" id="program">
+        <div class="section-header">
+            <h2>엑스트림 파워 프로그램</h2>
+            <p>일반 헬스장에서는 절대 알려주지 않는 비밀 트레이닝 방법</p>
+        </div>
+        
+        <div class="program-features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <img src="images/muscle-growth.svg" alt="근육 성장">
+                </div>
+                <h3>초고속 근육 성장</h3>
+                <p>특허받은 마이크로 테어링 기술로 근섬유를 극한까지 자극하여 일반 운동의 5배 빠른 근육 성장을 경험하세요.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <img src="images/fat-burn.svg" alt="지방 연소">
+                </div>
+                <h3>극한 지방 연소</h3>
+                <p>하루 15분 특수 운동으로 최대 48시간 지속되는 애프터번 효과. 잠자는 동안에도 지방이 연소됩니다.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <img src="images/hormone.svg" alt="호르몬 최적화">
+                </div>
+                <h3>호르몬 최적화</h3>
+                <p>테스토스테론 수치를 자연적으로 200% 증가시키는 비밀 운동 패턴으로 근육 성장을 가속화합니다.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="transformation" id="results">
+        <div class="section-header">
+            <h2>놀라운 변화</h2>
+            <p>엑스트림 파워 프로그램으로 변신한 실제 회원들</p>
+        </div>
+        
+        <div class="testimonials">
+            <div class="testimonial">
+                <div class="testimonial-image">
+                    <div class="before-after-label">Before / After</div>
+                </div>
+                <div class="testimonial-content">
+                    <p>"3주 만에 체지방 15kg 감량하고 근육량은 8kg 증가했어요. 10년간 헬스장을 다녀도 이런 변화는 없었습니다!"</p>
+                    <div class="testimonial-author">
+                        <strong>김민수</strong>, 32세 - 직장인
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial">
+                <div class="testimonial-image">
+                    <div class="before-after-label">Before / After</div>
+                </div>
+                <div class="testimonial-content">
+                    <p>"첫 주에는 믿기 힘들었지만, 2주차부터 복근이 생기기 시작했어요. 이제는 해변에서 자신있게 상의를 벗을 수 있습니다!"</p>
+                    <div class="testimonial-author">
+                        <strong>이지훈</strong>, 28세 - 대학생
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="proof-gallery">
+        <div class="section-header">
+            <h2>실시간 변신 갤러리</h2>
+            <p>수천 명이 이미 변신을 시작했습니다</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="g-item"><img src="images/before-after.jpg" alt="변신 사례 1"></div>
+            <div class="g-item"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop" alt="운동 이미지"></div>
+            <div class="g-item"><img src="images/before-after.jpg" alt="변신 사례 2"></div>
+            <div class="g-item"><img src="https://images.unsplash.com/photo-1434682881908-b43d0467b798?q=80&w=800&auto=format&fit=crop" alt="웨이트"></div>
+            <div class="g-item"><img src="images/before-after.jpg" alt="변신 사례 3"></div>
+            <div class="g-item"><img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=800&auto=format&fit=crop" alt="체형 변화"></div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="section-header">
+            <h2>프로그램 가격</h2>
+            <p>오늘만 특별 할인 제공</p>
+        </div>
+        
+        <div class="price-cards">
+            <div class="price-card featured">
+                <div class="price-header">
+                    <h3>엑스트림 파워 풀 패키지</h3>
+                    <div class="price">
+                        <div class="original-price">₩599,000</div>
+                        <div class="discount-price">₩99,000</div>
+                    </div>
+                    <div class="price-countdown">
+                        <div class="pc-title">할인 종료까지</div>
+                        <div class="pc-items">
+                            <div class="pc-item"><span class="pc-num" data-pc="hours">00</span><span class="pc-label">시간</span></div>
+                            <div class="pc-item"><span class="pc-num" data-pc="minutes">00</span><span class="pc-label">분</span></div>
+                            <div class="pc-item"><span class="pc-num" data-pc="seconds">00</span><span class="pc-label">초</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="price-features">
+                    <ul>
+                        <li>21일 완벽 변신 프로그램</li>
+                        <li>비밀 운동 영상 30개</li>
+                        <li>맞춤형 식단 플랜</li>
+                        <li>보충제 가이드</li>
+                        <li>24/7 코치 지원</li>
+                        <li>평생 업데이트</li>
+                    </ul>
+                </div>
+                <div class="price-cta">
+                    <a href="#" class="btn btn-primary open-join">지금 구매하기</a>
+                </div>
+                <div class="price-tag">83% 할인</div>
+                <div class="trust-badges">
+                    <div class="t-badge">안전결제</div>
+                    <div class="t-badge">SSL보안</div>
+                    <div class="t-badge">100%환불보장</div>
+                    <div class="t-badge">실시간코치</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="guarantee">
+            <div class="guarantee-icon"></div>
+            <div class="guarantee-text">
+                <strong>100% 환불 보장</strong>
+                <p>30일 이내에 결과가 만족스럽지 않으면 전액 환불해 드립니다.</p>
+            </div>
+        </div>
+    </section>
+    
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">X-POWER</div>
+            <div class="footer-links">
+                <a href="#">이용약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">환불정책</a>
+            </div>
+        </div>
+        <div class="footer-disclaimer">
+            <p>* 위 내용은 과장된 마케팅 예시이며, 실제 효과는 개인마다 다를 수 있습니다. 본 웹사이트는 교육 목적으로 제작되었으며 실제 프로그램을 판매하지 않습니다. 운동 관련 결정은 항상 전문가와 상담하시기 바랍니다.</p>
+            <p>교육 목적으로 제작된 가상의 사이트입니다.</p>
+        </div>
+    </footer>
+</body>
+</html>
